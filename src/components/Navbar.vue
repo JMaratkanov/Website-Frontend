@@ -1,46 +1,53 @@
 <template>
-<div>
-  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light"> <img src="../assets/images/navbarlogo.png" width="30" height="30" alt="" style="margin-left: 90px;">
-  <a class="navbar-brand">Menü</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"  @click="changeToPage(1)">Startseite</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"  @click="changeToPage(2)">Über Uns</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" @click="changeToPage(3)">Weiteres</a>
-      </li>
-    </ul>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!--<img src="../assets/images/navbarlogo.png" width="30" height="30" alt="" style="margin-left: 90px;">
+  <a class="navbar-brand">Menü</a>-->
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" style="margin-left: auto; margin-right: auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" @click="changeToPage(1)">Startseite</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="changeToPage(2)">Über Uns</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="changeToPage(3)">Weiteres</a>
+          </li>
+          <li class="nav-item"  v-if="loginStatus==0">
+            <a class="nav-link" href="#" @click="changeToPage(4)">Login</a>
+          </li>
+          <li class="nav-item" v-if="loginStatus==0">
+            <a class="nav-link" href="#" @click="changeToPage(5)">Registrierung</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-</nav></div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-    name: "Navbar",
-    
-    methods: {
+  name: "Navbar",
+  computed: {
+    ...mapGetters(["loginStatus"]),
+  },
+
+  methods: {
     ...mapActions(["setCurrentPage"]),
-    changeToPage(number){
+    changeToPage(number) {
       this.setCurrentPage(number);
-    }
+    },
   },
 };
-
-
-
 </script>
 
 <style>
-
-
+.nav-item{
+  padding-left: 30px;
+  padding-right: 30px;
+}
 </style>
