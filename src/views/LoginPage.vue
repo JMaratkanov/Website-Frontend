@@ -34,16 +34,17 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["setLoginStatus"]),
+    ...mapActions(["setLoginStatus","setCurrentPage"]),
     sendLogin() {
       var headers = {
         "Content-Type": "application/json",
       };
       this.axios
-        .post("http://localhost:8080/login", this.loginJson, { headers })
+        .post("http://localhost:8080/signin", this.loginJson, { headers })
         .then((response) => {
           if (response.data == true) {
             this.setLoginStatus(1);
+            this.setCurrentPage(1);
           }
         })
         .catch((error) => {

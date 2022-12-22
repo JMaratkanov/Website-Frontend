@@ -4,7 +4,7 @@
       <!--<img src="../assets/images/navbarlogo.png" width="30" height="30" alt="" style="margin-left: 90px;">
   <a class="navbar-brand">Menü</a>-->
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-collapse" id="navbarNav"> <!-- class collapse entfernt für mobile -->
         <ul class="navbar-nav" style="margin-left: auto; margin-right: auto">
           <li class="nav-item active">
             <a class="nav-link" href="#" @click="changeToPage(1)">Startseite</a>
@@ -20,6 +20,12 @@
           </li>
           <li class="nav-item" v-if="loginStatus==0">
             <a class="nav-link" href="#" @click="changeToPage(5)">Registrierung</a>
+          </li>
+          <li class="nav-item" v-if="loginStatus==1">
+            <a class="nav-link" href="#" @click="changeToPage(6)">Einstellungen</a>
+          </li>
+          <li class="nav-item" v-if="loginStatus==1">
+            <a class="nav-link" href="#" @click="logout()">Abmelden</a>
           </li>
         </ul>
       </div>
@@ -37,10 +43,14 @@ export default {
   },
 
   methods: {
-    ...mapActions(["setCurrentPage"]),
+    ...mapActions(["setCurrentPage","setLoginStatus"]),
     changeToPage(number) {
       this.setCurrentPage(number);
     },
+    logout(){
+      this.changeToPage(1);
+      this.setLoginStatus(0);
+    }
   },
 };
 </script>
