@@ -36,11 +36,13 @@ export default {
   methods: {
     ...mapActions(["setLoginStatus","setCurrentPage"]),
     sendLogin() {
+      const baseUrl= import.meta.env.VITE_BASE_URL;
+
       var headers = {
         "Content-Type": "application/json",
       };
       this.axios
-        .post("http://localhost:8080/signin", this.loginJson, { headers })
+        .post(baseUrl + "/signin", this.loginJson, { headers })
         .then((response) => {
           if (response.data == true) {
             this.setLoginStatus(1);

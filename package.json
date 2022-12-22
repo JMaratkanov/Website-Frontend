@@ -2,8 +2,10 @@
   "name": "website",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build-local": "vite build",
+    "dev": "vite --mode developement",
+    "build-local": "vite build  --mode local",
+    "build-staging": "vite build  --mode staging",
+    "build-production": "vite build --mode production", 
     "preview": "vite preview --port 5050",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
