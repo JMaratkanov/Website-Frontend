@@ -1,18 +1,36 @@
 <template>
   <div>
     <h1 style="text-align: center">Login</h1>
-    <div class="row" style="padding:10px">
-      <input v-model="email" type="text" id="login" class="inputfield" placeholder="Nutzer"/>
+    <div class="row" style="padding: 10px">
+      <input
+        v-model="email"
+        type="text"
+        id="login"
+        class="inputfield"
+        placeholder="Nutzer"
+      />
     </div>
-    <div class="row"  style="padding:10px">
-      <input v-model="password" type="text" id="password" class="inputfield" placeholder="Passwort"/>
+    <div class="row" style="padding: 10px">
+      <input
+        v-model="password"
+        type="text"
+        id="password"
+        class="inputfield"
+        placeholder="Passwort"
+      />
     </div>
-    <div class="row"  style="padding:10px">
-      <button @click="sendLogin()" type="button" class="btn btn-primary inputbutton">
-      Login
+    <div class="row" style="padding: 10px">
+      <button
+        @click="sendLogin()"
+        type="button"
+        class="btn btn-primary inputbutton"
+      >
+        Login
       </button>
 
-      <a class="underlineHover" href="#" style="text-align: center;">Forgot Password?</a>
+      <a class="underlineHover" href="#" style="text-align: center"
+        >Forgot Password?</a
+      >
     </div>
   </div>
 </template>
@@ -28,18 +46,14 @@ export default {
       password: "",
     };
   },
-  computed: {
-    loginJson() {
-      return { email: this.email, password: this.password };
-    },
-  },
   methods: {
-    ...mapActions(["setLoginStatus","setCurrentPage"]),
+    ...mapActions(["setLoginStatus", "setCurrentPage"]),
     sendLogin() {
-      const baseUrl= import.meta.env.VITE_BASE_URL;
+      const baseUrl = import.meta.env.VITE_BASE_URL;
+
       const params = new URLSearchParams();
-      params.append('username','test');
-      params.append('password','test');
+      params.append("username", this.email);
+      params.append("password", this.password);
 
       var headers = {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -61,18 +75,18 @@ export default {
 </script>
 
 <style>
-.inputfield{
+.inputfield {
   width: 20% !important;
   margin-left: auto;
   height: 45px;
-margin-right: auto;
-border-radius: 5px;
+  margin-right: auto;
+  border-radius: 5px;
 
-border-width: 1.5px;
+  border-width: 1.5px;
 }
-.inputbutton{
+.inputbutton {
   width: 10% !important;
   margin-left: auto;
-margin-right: auto;
+  margin-right: auto;
 }
 </style>
