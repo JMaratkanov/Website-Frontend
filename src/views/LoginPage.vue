@@ -37,12 +37,15 @@ export default {
     ...mapActions(["setLoginStatus","setCurrentPage"]),
     sendLogin() {
       const baseUrl= import.meta.env.VITE_BASE_URL;
+      const params = new URLSearchParams();
+      params.append('username','test');
+      params.append('password','test');
 
       var headers = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       };
       this.axios
-        .post(baseUrl + "/signin", this.loginJson, { headers })
+        .post(baseUrl + "/login", params, { headers })
         .then((response) => {
           if (response.data == true) {
             this.setLoginStatus(1);
