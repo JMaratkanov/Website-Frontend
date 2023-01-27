@@ -12,9 +12,9 @@
       <div class="inputwrapper">
         Passwort:
         <input
-          v-model="password"
+          v-model="passwort"
           type="text"
-          id="password"
+          id="passwort"
           class="registerfield"
         />
       </div>
@@ -24,7 +24,8 @@
     <div class="row" style="padding: 10px">
       <div class="inputwrapper">
         Anrede:
-        <input v-model="anrede" type="text" id="anrede" class="registerfield" />
+        <input v-model="anrede" type="radio" id="anrede"  value="0"/>Frau
+        <input v-model="anrede" type="radio" id="anrede"  value="1" />Herr
       </div>
     </div>
     <div class="row" style="padding: 10px">
@@ -44,7 +45,7 @@
         <input
           v-model="nachname"
           type="text"
-          id="bachname"
+          id="nachname"
           class="registerfield"
         />
       </div>
@@ -159,8 +160,8 @@ export default {
       showError: false,
 
       email: "",
-      password: "",
-      anrede: "",
+      passwort: "",
+      anrede: 0,
       vorname: "",
       nachname: "",
       geburtstag: "",
@@ -177,8 +178,8 @@ export default {
   computed: {
     registerUserJson() {
       return {
-        username: this.email,
-        password: this.password,
+        email: this.email,
+        passwort: this.passwort,
         anrede: this.anrede,
         vorname: this.vorname,
         nachname: this.nachname,
@@ -191,10 +192,12 @@ export default {
         vorwahl: this.vorwahl,
         rufnummer: this.rufnummer,
         iban: this.iban,
+        rolle: "empty"
       };
     },
   },
   methods: {
+     ...mapActions(["setCurrentPage"]),
     postRegistration() {
       const baseUrl = import.meta.env.VITE_BASE_URL;
       var headers = {
@@ -203,11 +206,14 @@ export default {
 
       console.log(this.registerUserJson);
 
-      if( this.email != "" && this.password != ""  && this.anrede != ""  && this.vorname != ""  && this.nachname != ""  && this.geburtstag  != "" && this.strasse != ""  && this.ort != ""  && this.postleitzahl != ""  && this.hausnummer != "" 
+      if( this.email != "" && this.passwort != "" && this.vorname != ""  && this.nachname != ""  && this.geburtstag  != "" && this.strasse != ""  && this.ort != ""  && this.postleitzahl != ""  && this.hausnummer != ""
       && this.hausnummerzusatz != ""  && this.vorwahl != "" && this.rufnummer != ""  && this.iban != "" ){
       this.axios
         .post(baseUrl + "/registration", this.registerUserJson, { headers })
         .then((response) => {
+          if(response.data == true){
+              this.setCurrentPage(4);
+          }
           console.log(response);
         });
       }else{
