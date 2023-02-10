@@ -47,7 +47,23 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setLoginStatus", "setCurrentPage"]),
+    ...mapActions([
+    "setLoginStatus", 
+    "setCurrentPage",
+    "setAdressen",
+    "setAnrede",
+    "setAuftraege",
+    "setBankverbindungen",
+    "setEmail",
+    "setGeburtstag",
+    "setNachname",
+    "setPasswort",
+    "setRolle",
+    "setRufnummer",
+    "setVorname",
+    "setVorwahl",
+    ]),
+
     sendLogin() {
       const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -57,9 +73,26 @@ export default {
       this.axios
         .get(baseUrl + "/user", { "headers": { "Authorization": 'Basic ' + btoa(username + ':' + password) }})
         .then((response) => {
-          console.log(response.data);
+          console.log(response);
 
-          if (response.data == true) {
+          //if (response.headers.token) {
+    //localStorage.setItem('token', response.headers.token)
+   //}
+
+          if (response.data.id > 0) {
+              this.setAdressen(response.data.adressen);
+              this.setAnrede(response.data.anrede);
+              this.setAuftraege(response.data.auftraege);
+              this.setBankverbindungen(response.data.bankverbindungen);
+              this.setEmail(response.data.email);
+              this.setGeburtstag(response.data.geburtstag);
+              this.setNachname(response.data.nachname);
+              this.setPasswort(response.data.passwort);
+              this.setRolle(response.data.rolle);
+              this.setRufnummer(response.data.rufnummer);
+              this.setVorname(response.data.vorname);
+              this.setVorwahl(response.data.vorwahl);
+
             this.setLoginStatus(1);
             this.setCurrentPage(1);
           }

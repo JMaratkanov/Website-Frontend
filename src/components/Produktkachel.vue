@@ -27,19 +27,36 @@ export default {
     return {
       selected: false,
       buttonHover: false,
-      buttonText:"In den Warenkorb"
+      buttonText:"In den Warenkorb",
+      artikelId: 1
     };
+  },
+  computed: {
+    ...mapGetters(["warenkorb"]),
   },
    
 
   methods: {
-    ...mapActions(["setCurrentPage"]),
+    ...mapActions(["setCurrentPage", "setWarenkorb"]),
     select(){
         if(this.selected == false){
             this.selected = true;
+            
+            let tmpWarenkorb = this.warenkorb;
+            tmpWarenkorb.push(this.artikelId);
+            this.setWarenkorb(tmpWarenkorb);
+
             this.buttonText="Entfernen";
         }else{
             this.selected = false;
+
+            let tmpWarenkorb = this.warenkorb;
+            let index = tmpWarenkorb.indexOf(this.artikelId);
+            if (index > -1) { 
+            tmpWarenkorb.splice(index, 1); 
+            }
+            this.setWarenkorb(tmpWarenkorb);
+
             this.buttonText="In den Warenkorb";
         }
         
