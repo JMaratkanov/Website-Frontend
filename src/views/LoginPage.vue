@@ -43,7 +43,7 @@ export default {
   data: () => {
     return {
       email: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
@@ -51,23 +51,21 @@ export default {
     sendLogin() {
       const baseUrl = import.meta.env.VITE_BASE_URL;
 
-      const params = new URLSearchParams();
-      params.append("username", this.email);
-      params.append("password", this.password);
-
-      var headers = {
-        "Content-Type": "application/x-www-form-urlencoded",
-      };
+      const username = this.email;
+      const password = this.password;
+      
       this.axios
-        .post(baseUrl + "/login", params, { headers })
+        .get(baseUrl + "/user", { "headers": { "Authorization": 'Basic ' + btoa(username + ':' + password) }})
         .then((response) => {
+          console.log(response.data);
+
           if (response.data == true) {
             this.setLoginStatus(1);
             this.setCurrentPage(1);
           }
         })
         .catch((error) => {
-          console.error("Der Request ist gescheitert", error);
+          console.error("Invalid Login");
         });
     },
   },

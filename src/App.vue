@@ -8,6 +8,7 @@
         <first-page v-if="currentPage === 1"></first-page>
         <second-page v-if="currentPage === 2"></second-page>
         <third-page v-if="currentPage === 3"></third-page>
+        <warenkorb-page v-if="currentPage === 7"></warenkorb-page>
         <login-page v-if="currentPage === 4"></login-page>
         <register-page v-if="currentPage === 5 && loginStatus === 0"></register-page>
         <settings-page v-if="currentPage === 6 && loginStatus === 1"></settings-page>
@@ -26,6 +27,7 @@ import Navbar from "./components/Navbar.vue";
 import Caroussell from "./components/Caroussell.vue";
 import RegisterPage from './views/RegisterPage.vue';
 import SettingsPage from './views/SettingsPage.vue';
+import WarenkorbPage from './views/WarenkorbPage.vue';
 
 export default {
   name: "App",
@@ -38,6 +40,7 @@ export default {
     LoginPage,
     RegisterPage,
     SettingsPage,
+    WarenkorbPage
   },
   data: () => {
     return {};

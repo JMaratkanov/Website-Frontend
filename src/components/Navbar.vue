@@ -15,6 +15,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#" @click="changeToPage(3)">Weiteres</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="changeToPage(7)">Warenkorb</a>
+          </li>
           <li class="nav-item"  v-if="loginStatus==0">
             <a class="nav-link" href="#" @click="changeToPage(4)">Login</a>
           </li>
