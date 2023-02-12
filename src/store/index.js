@@ -3,6 +3,7 @@ export default createStore({
   state: {
     currentPage: 1,
     loginStatus: 0,
+   
 
     warenkorb: [],
 
@@ -92,8 +93,8 @@ export default createStore({
   getters: {
     currentPage: (state) => state.currentPage,
     loginStatus: (state) => state.loginStatus,
-
     warenkorb: (state) => state.warenkorb,
+
 
     adressen: (state) => state.adressen,
     anrede: (state) => state.anrede,

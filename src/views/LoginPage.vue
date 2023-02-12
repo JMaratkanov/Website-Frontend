@@ -46,6 +46,7 @@ export default {
       password: ""
     };
   },
+
   methods: {
     ...mapActions([
     "setLoginStatus", 
@@ -71,13 +72,8 @@ export default {
       const password = this.password;
       
       this.axios
-        .get(baseUrl + "/user", { "headers": { "Authorization": 'Basic ' + btoa(username + ':' + password) }})
+        .get(baseUrl + "/user", {  withCredentials: true, "headers": { "Authorization": 'Basic ' + btoa(username + ':' + password) }})
         .then((response) => {
-          console.log(response);
-
-          //if (response.headers.token) {
-    //localStorage.setItem('token', response.headers.token)
-   //}
 
           if (response.data.id > 0) {
               this.setAdressen(response.data.adressen);

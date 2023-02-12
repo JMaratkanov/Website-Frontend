@@ -18,6 +18,8 @@ export default {
   name: "WarenkorbPage",
 
   computed: {
+   
+  
     orderJson() {
       return {
  
@@ -54,10 +56,9 @@ export default {
       };
 
       console.log(this.orderJson);
-
     
       this.axios
-        .post(baseUrl + "/kunde/order", this.orderJson, { headers })
+        .post(baseUrl + "/kunde/order", this.orderJson, { withCredentials: true, headers })
         .then((response) => {
           if(response.data == "Auftrag speichern erfolgreich"){
               this.setCurrentPage(4);
