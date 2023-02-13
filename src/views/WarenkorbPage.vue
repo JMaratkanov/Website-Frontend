@@ -1,9 +1,41 @@
 <template>
   <div>
   <h1 style="text-align: center;">Warenkorb</h1>
+
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Rechnungsadresse</h5>
+    {{ orderJson.rechnungStrasse + " " + orderJson.rechnungHausnummer +" "+ orderJson.rechnungHausnummerzusatz }} <br>
+    {{ orderJson.rechnungOrt +","+ orderJson.rechnungPlz }} <br>
+    {{ orderJson.iban }}
+    <a href="#" class="card-link">Bearbeiten</a>
+    
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Lieferadresse</h5>
+    {{ orderJson.lieferungStrasse + " " + orderJson.lieferungHausnummer +" "+ orderJson.lieferungHausnummerzusatz }} <br>
+    {{ orderJson.lieferungOrt +","+ orderJson.lieferungPlz }}
+  
+    <a href="#" class="card-link">Bearbeiten</a>
+    
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Artikel</h5>
+    <p v-for="artikel in orderJson.artikel"> {{artikel.id}}</p>
+  
+    <a href="#" class="card-link">Bearbeiten</a>
+    
+  </div>
+</div>
    
 
-    {{this.orderJson}}
+    
    
     <button class="btn btn-secondary" @click="order">Zur Kasse</button>
   </div>
