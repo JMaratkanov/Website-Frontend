@@ -3,7 +3,7 @@
   <h1 style="text-align: center;">Warenkorb</h1>
    
 
-    
+    {{this.orderJson}}
    
     <button class="btn btn-secondary" @click="order">Zur Kasse</button>
   </div>
@@ -22,7 +22,7 @@ export default {
   
     orderJson() {
       return {
- 
+                    //kundenid oder emial holen
   artikel: [
     {
       id: 1
@@ -33,11 +33,11 @@ export default {
   ],
   adressen: [
     {
-      id: 1
+      id: 5     //id holen
     }
   ],
   bankverbindung: {
-    id: 1
+    id: 3           //id holen
   }
 
       };

@@ -184,14 +184,28 @@ export default {
         vorname: this.vorname,
         nachname: this.nachname,
         geburtstag: this.geburtstag,
-        strasse: this.strasse,
-        ort: this.ort,
-        plz: this.postleitzahl,
-        hausnummer: this.hausnummer,
-        hausnummerzusatz: this.hausnummerzusatz,
+
+        "adressen": [
+            {
+              
+              strasse: this.strasse,
+              ort: this.postleitzahl,
+              plz: this.ort,
+              hausnummer: this.hausnummer,
+              hausnummerzusatz: this.hausnummerzusatz,
+              typ: "rechnungsadresse"
+            }
+          ],
+
+          "bankverbindungen": [
+    {
+      iban: this.iban,
+      bic: "string"
+    }
+  ],
         vorwahl: this.vorwahl,
         rufnummer: this.rufnummer,
-        iban: this.iban,
+        
         rolle: "empty"
       };
     },
