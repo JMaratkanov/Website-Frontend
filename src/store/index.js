@@ -7,10 +7,11 @@ export default createStore({
 
     warenkorb: [],
 
-    adressen: [],
+    kundeId: "",
+    adressen: "",
     anrede: "",
     auftraege: [],
-    bankverbindungen:  [],
+    bankverbindungen:  "",
     email: "",
     geburtstag: "",
     nachname: "",
@@ -27,6 +28,7 @@ export default createStore({
 
     setWarenkorb: (state, params) => (state.warenkorb = params),
 
+    setKundeId: (state, params) => (state.kundeId = params),
     setAdressen: (state, params) => (state.adressen = params),
     setAnrede: (state, params) => (state.anrede = params),
     setAuftraege: (state, params) => (state.auftraege = params),
@@ -53,6 +55,9 @@ export default createStore({
       commit("setWarenkorb", warenkorb);
     },
 
+    setKundeId({ commit }, kundeId) {
+      commit("setKundeId", kundeId);
+    },
     setAdressen({ commit }, adressen) {
       commit("setAdressen", adressen);
     },
@@ -95,7 +100,7 @@ export default createStore({
     loginStatus: (state) => state.loginStatus,
     warenkorb: (state) => state.warenkorb,
 
-
+    kundeId: (state) => state.kundeId,
     adressen: (state) => state.adressen,
     anrede: (state) => state.anrede,
     auftraege: (state) => state.auftraege,

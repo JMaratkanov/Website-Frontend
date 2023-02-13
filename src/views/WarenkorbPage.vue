@@ -18,29 +18,53 @@ export default {
   name: "WarenkorbPage",
 
   computed: {
+    ...mapGetters(["kundeId","adressen", "bankverbindungen"]),
    
   
     orderJson() {
-      return {
-                    //kundenid oder emial holen
-  artikel: [
-    {
-      id: 1
-    },
-{
-      id: 2
-    }
-  ],
-  adressen: [
-    {
-      id: 5     //id holen
-    }
-  ],
-  bankverbindung: {
-    id: 3           //id holen
-  }
+        let rAdress = { strasse:"", ort:"", plz:"", hausnummer:"",hausnummerzusatz:""};
+        let lAdress = { strasse:"", ort:"", plz:"", hausnummer:"",hausnummerzusatz:""};
+        let bank ="";
 
-      };
+        if(this.adressen != ""){
+         if(this.adressen[0].typ == "rechnungsadresse"){
+          rAdress = this.adressen[0];
+          lAdress = this.adressen[0];
+         }
+
+         if(Object.keys(this.adressen).length == 2){
+         
+          lAdress = this.adressen[1];
+         }
+        }
+        if(this.bankverbindungen != ""){
+          bank= this.bankverbindungen[0].iban;
+        }
+
+      return {
+        
+  "artikel": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ],
+  "rechnungStrasse": rAdress.strasse,
+  "rechnungOrt": rAdress.ort,
+  "rechnungPlz": rAdress.plz,
+  "rechnungHausnummer": rAdress.hausnummer,
+  "rechnungHausnummerzusatz": rAdress.hausnummerzusatz,
+  "lieferungStrasse": lAdress.strasse,
+  "lieferungOrt": lAdress.ort,
+  "lieferungPlz": lAdress.plz,
+  "lieferungHausnummer": lAdress.hausnummer,
+  "lieferungHausnummerzusatz": lAdress.hausnummerzusatz,
+  "iban": bank,
+  "bic": "string",
+  "kunde": this.kundeId
+};
     },
   },
 

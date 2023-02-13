@@ -51,6 +51,7 @@ export default {
     ...mapActions([
     "setLoginStatus", 
     "setCurrentPage",
+    "setKundeId",
     "setAdressen",
     "setAnrede",
     "setAuftraege",
@@ -76,6 +77,7 @@ export default {
         .then((response) => {
 
           if (response.data.id > 0) {
+              this.setKundeId(response.data.id);
               this.setAdressen(response.data.adressen);
               this.setAnrede(response.data.anrede);
               this.setAuftraege(response.data.auftraege);
