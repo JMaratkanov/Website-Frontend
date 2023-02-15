@@ -39,7 +39,7 @@ margin-bottom: 50px;">
 
     
 
-    <button style="width: 30%;
+    <button @click="weiter" style="width: 30%;
 margin-top: 50px;
 height: 40px;
 margin-bottom: 50px;
@@ -70,6 +70,10 @@ export default {
 
   methods: {
     ...mapActions(["setCurrentPage"]),
+   
+    weiter() {
+      this.setCurrentPage(9);
+    },
  
   },
 };

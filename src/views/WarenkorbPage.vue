@@ -84,7 +84,7 @@ margin-bottom: 50px;
 left: 50%;
 position: absolute;
 -ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%);" class="btn btn-secondary" @click="order">Zur Kasse</button>
+transform: translate(-50%, -50%);" class="btn btn-secondary" @click="order">Jetzt Kaufen</button>
   </div>
 </template>
 
