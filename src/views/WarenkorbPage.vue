@@ -2,7 +2,29 @@
   <div>
   <h1 style="text-align: center;">Warenkorb</h1>
 
-  <div class="card" style="width: 18rem;">
+  
+
+  <div class="row"><!--Bootstrap row kann bis zu 12 Spalten haben-->
+                    <div class="col-xl-8 offset-xl-2">
+                      <div class="progress" style="margin-top: 10px;
+margin-bottom: 50px;">
+  <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">99%</div>
+</div>
+  <div class="card" >
+  <div class="card-body">
+    <h5 class="card-title">Gesammtsumme</h5> mit MwSt.
+    
+    
+    
+  </div>
+</div>
+</div>
+</div>
+<h3 style="text-align:center;margin-top: 40px;margin-bottom: 40px;" >Zusammenfassung</h3>
+
+<div class="row"><!--Bootstrap row kann bis zu 12 Spalten haben-->
+                    <div class="col-xl-4 offset-xl-2">
+  <div class="card" >
   <div class="card-body">
     <h5 class="card-title">Rechnungsadresse</h5>
     {{ orderJson.rechnungStrasse + " " + orderJson.rechnungHausnummer +" "+ orderJson.rechnungHausnummerzusatz }} <br>
@@ -12,8 +34,9 @@
     
   </div>
 </div>
-
-<div class="card" style="width: 18rem;">
+</div>
+<div class="col-xl-4 offset-xl-0">
+<div class="card" >
   <div class="card-body">
     <h5 class="card-title">Lieferadresse</h5>
     {{ orderJson.lieferungStrasse + " " + orderJson.lieferungHausnummer +" "+ orderJson.lieferungHausnummerzusatz }} <br>
@@ -21,23 +44,47 @@
   
     <a href="#" class="card-link">Bearbeiten</a>
     
-  </div>
+  </div></div>
 </div>
 
-<div class="card" style="width: 18rem;">
+</div>
+
+
+<div class="row"><!--Bootstrap row kann bis zu 12 Spalten haben-->
+                    <div class="col-xl-4 offset-xl-2">
+<div class="card" style="margin-top: 25px;">
+  <div class="card-body">
+    <h5 class="card-title">Bezahlung</h5>
+   
+  
+    <a href="#" class="card-link">Bearbeiten</a>
+    
+  </div> </div>
+</div>
+</div>
+   
+<div class="row"><!--Bootstrap row kann bis zu 12 Spalten haben-->
+                    <div class="col-xl-8 offset-xl-2">
+<div class="card" style="margin-top: 25px;">
   <div class="card-body">
     <h5 class="card-title">Artikel</h5>
     <p v-for="artikel in orderJson.artikel"> {{artikel.id}}</p>
   
     <a href="#" class="card-link">Bearbeiten</a>
     
-  </div>
+  </div> </div>
 </div>
-   
-
+</div>
     
-   
-    <button class="btn btn-secondary" @click="order">Zur Kasse</button>
+
+    <button style="width: 30%;
+margin-top: 50px;
+height: 40px;
+margin-bottom: 50px;
+left: 50%;
+position: absolute;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);" class="btn btn-secondary" @click="order">Zur Kasse</button>
   </div>
 </template>
 

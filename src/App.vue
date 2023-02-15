@@ -8,6 +8,8 @@
         <first-page v-if="currentPage === 1"></first-page>
         <second-page v-if="currentPage === 2"></second-page>
         <third-page v-if="currentPage === 3"></third-page>
+        <kasse-page v-if="currentPage === 99"></kasse-page>
+       <bezahlung-page  v-if="currentPage === 99"></bezahlung-page>
         <warenkorb-page v-if="currentPage === 7"></warenkorb-page>
         <login-page v-if="currentPage === 4"></login-page>
         <register-page v-if="currentPage === 5 && loginStatus === 0"></register-page>
@@ -28,6 +30,8 @@ import Caroussell from "./components/Caroussell.vue";
 import RegisterPage from './views/RegisterPage.vue';
 import SettingsPage from './views/SettingsPage.vue';
 import WarenkorbPage from './views/WarenkorbPage.vue';
+import BezahlungPage from './views/BezahlungPage.vue';
+import KassePage from './views/KassePage.vue';
 
 export default {
   name: "App",
@@ -40,7 +44,9 @@ export default {
     LoginPage,
     RegisterPage,
     SettingsPage,
-    WarenkorbPage
+    WarenkorbPage,
+    BezahlungPage,
+    KassePage
   },
   data: () => {
     return {};
