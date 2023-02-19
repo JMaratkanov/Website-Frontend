@@ -15,14 +15,15 @@
           <li class="nav-item">
             <a class="nav-link" href="#" @click="changeToPage(3)">Weiteres</a>
           </li>
-          <li v-if="loginStatus==0" class="nav-item">
+         
+          <li class="nav-item" v-if="loginStatus==0">
+            <a class="nav-link" href="#" @click="changeToPage(5)">Registrieren</a>
+        </li>
+        <li v-if="loginStatus==0" class="nav-item">
             <img @click="changeToPage(7)" src="../assets/images/icons8-warenkorb.png" width="25" height="25" alt=""/>
         </li>
         <li v-if="loginStatus==1" class="nav-item">
             <img @click="changeToPage(8)" src="../assets/images/icons8-warenkorb.png" width="25" height="25" alt=""/>
-        </li>
-          <li class="nav-item" v-if="loginStatus==0">
-            <img @click="changeToPage(5)" src="../assets/images/icons8-user.png" width="25" height="25" alt=""/>
         </li>
           <li class="nav-item" v-if="loginStatus==1">
             <img @click="changeToPage(6)" src="../assets/images/icons8-user.png" width="25" height="25" alt=""/>

@@ -6,8 +6,7 @@
 
   <div class="row"><!--Bootstrap row kann bis zu 12 Spalten haben-->
                     <div class="col-xl-8 offset-xl-2">
-                      <div class="progress" style="margin-top: 10px;
-margin-bottom: 50px;">
+                      <div class="progress" style="margin-top: 10px;margin-bottom: 50px;">
   <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">99%</div>
 </div>
   <div class="card" >

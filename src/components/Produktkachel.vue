@@ -1,5 +1,5 @@
 <template>
-<div style="margin-left:100px">
+<div >
  <div class="card produktCard" style="width: 18rem;">
   <img src="https://via.placeholder.com/150 " class="card-img-top" alt="bla">
   <div class="card-body">

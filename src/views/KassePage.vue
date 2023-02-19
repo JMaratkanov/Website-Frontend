@@ -289,6 +289,8 @@ export default {
 
 }
     this.setAdressen(all);
+    //Backend Update Adresss update
+    this.updateAdress(newAdress);
 
     this.checkbox2= false;
 
@@ -302,7 +304,8 @@ export default {
       newAdress.plz = this.bKundeAlterLPlz;
       newAdress.typ = "lieferadresse";
 
-      //Backend Update Adresss update
+      
+
       const all = this.adressen;
      
       
@@ -313,10 +316,28 @@ export default {
         all[i] = newAdress;}
 }
     this.setAdressen(all);
+    //Backend Update Adresss update
+    this.updateAdress(newAdress);
 
     this.checkbox= false;
 
-    }
+    },
+    updateAdress(adr) {
+      const baseUrl = import.meta.env.VITE_BASE_URL;
+      var headers = {
+        "Content-Type": "application/json",
+      };
+    
+      this.axios
+        .put(baseUrl + "/kunde/adress", adr, { withCredentials: true, headers })
+        .then((response) => {
+          if(response.data == "Auftrag Adresse updaten erfolgreich"){
+             console.log("update");
+          }
+          console.log(response);
+        });
+      
+    },
  
   },
 };
