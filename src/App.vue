@@ -12,6 +12,7 @@
         <kasse-page v-if="currentPage === 8 "></kasse-page>
        <bezahlung-page  v-if="currentPage === 9"></bezahlung-page>
         <warenkorb-page v-if="currentPage === 10"></warenkorb-page>
+        <order-success-page v-if="currentPage === 11"></order-success-page>
         <login-page v-if="currentPage === 4"></login-page>
         <register-page v-if="currentPage === 5 && loginStatus === 0"></register-page>
         <settings-page v-if="currentPage === 6 && loginStatus === 1"></settings-page>
@@ -34,6 +35,7 @@ import WarenkorbPage from './views/WarenkorbPage.vue';
 import BezahlungPage from './views/BezahlungPage.vue';
 import KassePage from './views/KassePage.vue';
 import GuestOrderPage from './views/GuestOrderPage.vue';
+import OrderSuccessPage from './views/OrderSuccessPage.vue';
 
 export default {
   name: "App",
@@ -49,7 +51,8 @@ export default {
     WarenkorbPage,
     BezahlungPage,
     KassePage,
-    GuestOrderPage
+    GuestOrderPage,
+    OrderSuccessPage
   },
   data: () => {
     return {};

@@ -194,6 +194,14 @@ export default {
               hausnummer: this.hausnummer,
               hausnummerzusatz: this.hausnummerzusatz,
               typ: "rechnungsadresse"
+            },
+            {
+              strasse: this.strasse,
+              ort: this.postleitzahl,
+              plz: this.ort,
+              hausnummer: this.hausnummer,
+              hausnummerzusatz: this.hausnummerzusatz,
+              typ: "lieferadresse"
             }
           ],
 

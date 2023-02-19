@@ -29,7 +29,7 @@ margin-bottom: 50px;">
     <h5 class="card-title">Rechnungsadresse</h5>
     {{ orderJson.rechnungStrasse + " " + orderJson.rechnungHausnummer +" "+ orderJson.rechnungHausnummerzusatz }} <br>
     {{ orderJson.rechnungOrt +","+ orderJson.rechnungPlz }} <br>
-    {{ orderJson.iban }}
+    Iban: {{ orderJson.iban }}
     <a href="#" class="card-link">Bearbeiten</a>
     
   </div>
@@ -68,7 +68,7 @@ margin-bottom: 50px;">
 <div class="card" style="margin-top: 25px;">
   <div class="card-body">
     <h5 class="card-title">Artikel</h5>
-    <p v-for="artikel in orderJson.artikel"> {{artikel.id}}</p>
+    <p v-for="artikel in this.warenkorb"> {{artikel.name}}</p>
   
     <a href="#" class="card-link">Bearbeiten</a>
     
@@ -97,7 +97,7 @@ export default {
   name: "WarenkorbPage",
 
   computed: {
-    ...mapGetters(["kundeId","adressen", "bankverbindungen"]),
+    ...mapGetters(["kundeId","adressen", "bankverbindungen", "warenkorb"]),
    
   
     orderJson() {
@@ -106,30 +106,36 @@ export default {
         let bank ="";
 
         if(this.adressen != ""){
-         if(this.adressen[0].typ == "rechnungsadresse"){
-          rAdress = this.adressen[0];
-          lAdress = this.adressen[0];
-         }
 
-         if(Object.keys(this.adressen).length == 2){
+          for (var i = 0; i < this.adressen.length; i++) {
+            if(this.adressen[i].typ == "rechnungsadresse"){
+ rAdress = this.adressen[i];
+            }
+            if(this.adressen[i].typ == "lieferadresse"){
+lAdress = this.adressen[i];
+            }
+          }
+
          
-          lAdress = this.adressen[1];
-         }
+
+        
         }
+
+        //wk
+        let artikel = [];
+         
+        for (var i = 0; i < this.warenkorb.length; i++) {
+          artikel.push({"id":this.warenkorb[i].id});
+        }
+        console.log(artikel);
+
         if(this.bankverbindungen != ""){
           bank= this.bankverbindungen[0].iban;
         }
 
       return {
         
-  "artikel": [
-    {
-      "id": 1
-    },
-    {
-      "id": 2
-    }
-  ],
+  "artikel": artikel,
   "rechnungStrasse": rAdress.strasse,
   "rechnungOrt": rAdress.ort,
   "rechnungPlz": rAdress.plz,
@@ -164,7 +170,7 @@ export default {
         .post(baseUrl + "/kunde/order", this.orderJson, { withCredentials: true, headers })
         .then((response) => {
           if(response.data == "Auftrag speichern erfolgreich"){
-              this.setCurrentPage(4);
+              this.setCurrentPage(11);
           }
           console.log(response);
         });

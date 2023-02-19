@@ -99,7 +99,7 @@ export default {
               this.setVorwahl(response.data.vorwahl);
 
             this.setLoginStatus(1);
-            this.setCurrentPage(9);
+            this.setCurrentPage(8);
           }
         })
         .catch((error) => {

@@ -13,13 +13,6 @@
     {{buttonText}}
     </button>
   </div>
-
-  <div class="card-body produktBtnWrapper" @mouseover="buttonHover2 = true"
-    @mouseleave="buttonHover2 = false">
-    <button   :style="[( buttonHover2)?{'background':'gray'}:{'background':'lightgray'}]" @click="remove()" class="produktBtn">
-    Entfernen
-    </button>
-  </div>
 </div>
 
 </div>
@@ -30,7 +23,7 @@
 export default {
   
 
-  name: "Produktkachel",
+  name: "ProduktkachelOnOff",
   props: {
     artikelId: {
             type: Number,
@@ -46,9 +39,7 @@ export default {
   data: () => {
     return {
       selected: false,
-      count:0,
       buttonHover: false,
-      buttonHover2: false,
       buttonText:"In den Warenkorb",
     };
   },
@@ -60,23 +51,29 @@ export default {
   methods: {
     ...mapActions(["setCurrentPage", "setWarenkorb"]),
     select(){
-        
-            this.selected =true;
+        if(this.selected == false){
+            this.selected = true;
+            
             let tmpWarenkorb = this.warenkorb;
             tmpWarenkorb.push({"id":this.artikelId, "name":this.produktName});
             this.setWarenkorb(tmpWarenkorb);
-            this.count++;
-            this.buttonText="Menge: " +this.count + "x";
-        
+
+            this.buttonText="Entfernen";
+        }else{
+          //Not Fubktional
+            this.selected = false;
+
+            let tmpWarenkorb = this.warenkorb;
+            let index = tmpWarenkorb.indexOf(this.artikelId);
+            if (index > -1) { 
+            tmpWarenkorb.splice(index, 1); 
+            }
+            this.setWarenkorb(tmpWarenkorb);
+
+            this.buttonText="In den Warenkorb";
+        }
         
         console.log("selected");
-    },
-    remove(){
-      const tmpWarenkorb = this.warenkorb.filter(artikel => artikel.id != this.artikelId);
-      this.setWarenkorb(tmpWarenkorb);
-      this.count = 0;
-      this.buttonText="In den Warenkorb";
-      this.selected = false;
     }
 
   },

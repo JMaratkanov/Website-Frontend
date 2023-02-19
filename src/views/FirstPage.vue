@@ -2,8 +2,8 @@
   <div>
   <h1 style="text-align: center;">Willkommen</h1>
    
-  <produktkachel></produktkachel>
-    
+  <produktkachel artikel-id=1 produktName="Tomate"></produktkachel>
+  <produktkachel artikel-id=2 produktName="Birne"></produktkachel>
    
     <button class="btn btn-secondary" @click="weiter">Weiter</button>
   </div>
