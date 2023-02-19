@@ -55,7 +55,13 @@ export default {
   computed: {
     ...mapGetters(["warenkorb"]),
   },
-   
+   created(){
+      this.count = this.warenkorb.filter(artikel => artikel.id==this.artikelId).length;
+      if (this.count > 0){
+        this.buttonText = "Menge: " +this.count + "x";
+        this.selected = true;
+      }
+   },
 
   methods: {
     ...mapActions(["setCurrentPage", "setWarenkorb"]),

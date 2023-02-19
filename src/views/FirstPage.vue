@@ -1,10 +1,13 @@
 <template>
   <div>
   <h1 style="text-align: center;">Willkommen</h1>
-   
-  <produktkachel artikel-id=1 produktName="Tomate"></produktkachel>
+  <div class="row"><!--Bootstrap row kann bis zu 12 Spalten haben-->
+                    <div class="col-xl-8 offset-xl-1">
+  <produktkachel artikel-id=1 produktName="Tomate"></produktkachel></div>
+  <div class="col-xl-8 offset-xl-1">
   <produktkachel artikel-id=2 produktName="Birne"></produktkachel>
-   
+   </div>
+                    </div>
     <button class="btn btn-secondary" @click="weiter">Weiter</button>
   </div>
 </template>
