@@ -54,7 +54,7 @@ export default defineComponent({
     },
 
     products:
-[{"id":1, "name":"Tomate"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}, {"id":2, "name":"Birne"}]
+[{"id":1, "name":"Tomate"}, {"id":2, "name":"Birne"}, {"id":3, "name":"Kiwi"}, {"id":4, "name":"Nudel"}, {"id":5, "name":"Tee"}, {"id":6, "name":"Rhabarber"}, {"id":7, "name":"Bananee"}, {"id":8, "name":"Traube"}, {"id":9, "name":"Kaugummi"}]
 
   }),
 })
