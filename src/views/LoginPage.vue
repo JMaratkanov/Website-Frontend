@@ -77,6 +77,8 @@ export default {
         .then((response) => {
 
           if (response.data.id > 0) {
+              //xscrf token aus cookie lesen undin session strorage setzen.. dann in folgerequests vie interceptor als Header X-XSRF-TOKEN mitsenden
+
               this.setKundeId(response.data.id);
               this.setAdressen(response.data.adressen);
               this.setAnrede(response.data.anrede);
