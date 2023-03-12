@@ -161,10 +161,12 @@ lAdress = this.adressen[i];
       const baseUrl = import.meta.env.VITE_BASE_URL;
       var headers = {
         "Content-Type": "application/json",
+        "Authorization": sessionStorage.getItem("Authorization"), //nur wenn da IF - public braucht nicht
+        "X-XSRF-TOKEN": sessionStorage.getItem("XSRF-TOKEN"),//nur wenn da IF - public braucht
       };
 
       console.log(this.orderJson);
-    
+      console.log(headers);
       this.axios
         .post(baseUrl + "/kunde/order", this.orderJson, { withCredentials: true, headers })
         .then((response) => {

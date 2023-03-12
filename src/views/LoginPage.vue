@@ -43,27 +43,27 @@ export default {
   data: () => {
     return {
       email: "",
-      password: ""
+      password: "",
     };
   },
 
   methods: {
     ...mapActions([
-    "setLoginStatus", 
-    "setCurrentPage",
-    "setKundeId",
-    "setAdressen",
-    "setAnrede",
-    "setAuftraege",
-    "setBankverbindungen",
-    "setEmail",
-    "setGeburtstag",
-    "setNachname",
-    "setPasswort",
-    "setRolle",
-    "setRufnummer",
-    "setVorname",
-    "setVorwahl",
+      "setLoginStatus",
+      "setCurrentPage",
+      "setKundeId",
+      "setAdressen",
+      "setAnrede",
+      "setAuftraege",
+      "setBankverbindungen",
+      "setEmail",
+      "setGeburtstag",
+      "setNachname",
+      "setPasswort",
+      "setRolle",
+      "setRufnummer",
+      "setVorname",
+      "setVorwahl",
     ]),
 
     sendLogin() {
@@ -71,27 +71,40 @@ export default {
 
       const username = this.email;
       const password = this.password;
-      
+
       this.axios
-        .get(baseUrl + "/user", {  withCredentials: true, "headers": { "Authorization": 'Basic ' + btoa(username + ':' + password) }})
+        .get(baseUrl + "/user", {
+          withCredentials: true,
+          headers: {
+            Authorization: "Basic " + btoa(username + ":" + password),
+          },
+        })
         .then((response) => {
-
           if (response.data.id > 0) {
-              //xscrf token aus cookie lesen undin session strorage setzen.. dann in folgerequests vie interceptor als Header X-XSRF-TOKEN mitsenden
+            //xscrf token aus cookie lesen undin session strorage setzen.. dann in folgerequests vie interceptor als Header X-XSRF-TOKEN mitsenden
+            window.sessionStorage.setItem(
+              "Authorization",
+              response.headers.get("Authorization")
+            );
 
-              this.setKundeId(response.data.id);
-              this.setAdressen(response.data.adressen);
-              this.setAnrede(response.data.anrede);
-              this.setAuftraege(response.data.auftraege);
-              this.setBankverbindungen(response.data.bankverbindungen);
-              this.setEmail(response.data.email);
-              this.setGeburtstag(response.data.geburtstag);
-              this.setNachname(response.data.nachname);
-              this.setPasswort(response.data.passwort);
-              this.setRolle(response.data.rolle);
-              this.setRufnummer(response.data.rufnummer);
-              this.setVorname(response.data.vorname);
-              this.setVorwahl(response.data.vorwahl);
+            window.sessionStorage.setItem(
+              "XSRF-TOKEN",
+              this.$cookies.get("XSRF-TOKEN")
+            );
+
+            this.setKundeId(response.data.id);
+            this.setAdressen(response.data.adressen);
+            this.setAnrede(response.data.anrede);
+            this.setAuftraege(response.data.auftraege);
+            this.setBankverbindungen(response.data.bankverbindungen);
+            this.setEmail(response.data.email);
+            this.setGeburtstag(response.data.geburtstag);
+            this.setNachname(response.data.nachname);
+            this.setPasswort(response.data.passwort);
+            this.setRolle(response.data.rolle);
+            this.setRufnummer(response.data.rufnummer);
+            this.setVorname(response.data.vorname);
+            this.setVorwahl(response.data.vorwahl);
 
             this.setLoginStatus(1);
             this.setCurrentPage(1);
